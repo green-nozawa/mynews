@@ -15,11 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin/news/create', 'Admin\NewsController@add')->middleware('auth');
+// Route::get('admin/news/create', 'Admin\NewsController@add')->middleware('auth');
+// Route::post('admin/news/create', 'Admin\NewsController@create')->middleware('auth');
 
-// Route::group(['prefix' => 'admin'], function() {
-//     Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
-// });
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+    Route::post('news/create', 'Admin\NewsController@create')->middleware('auth'); # 追記
+});
 
 Auth::routes();
 
